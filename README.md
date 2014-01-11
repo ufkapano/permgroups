@@ -18,4 +18,4 @@ arXiv:1307.7042 [cs.MS]
 Python for education: permutations. 
 http://ojs.pythonpapers.org/index.php/tpp/article/view/258 
 
-EOF
+The project is moved from Google Code.
