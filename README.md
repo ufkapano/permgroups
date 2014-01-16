@@ -1,3 +1,6 @@
+perms-dict
+==========
+
 Python implementation of permutations is presented. 
 Two classes are introduced: Perm for permutations, 
 Group for permutation groups. 
@@ -12,7 +15,7 @@ stabilizer), orbits, and several tests.
 References
 
 [1] A. Kapanowski, Python for education: permutations. 
-arXiv:1307.7042 [cs.MS]
+http://arxiv.org/abs/1307.7042
 
 [2] A. Kapanowski, The Python Papers 9, 3 (2014). 
 Python for education: permutations. 
