@@ -1,0 +1,9 @@
+# This file tells git what files to ignore.
+
+# Regular Python bytecode files.
+*.pyc
+
+# Optimized Python bytecode files.
+*.pyo
+
+# EOF
