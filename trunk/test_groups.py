@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: iso-8859-2 -*-
 #
-# groupstest.py
+# test_groups.py
 #
 # Tests for groups.
 

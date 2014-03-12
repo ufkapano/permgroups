@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: iso-8859-2 -*-
 #
-# permstest.py
+# test_perms.py
 #
 # Tests for perms.
 
