@@ -2,6 +2,7 @@
 
 from perms import Perm
 
+
 class Group(dict):
     """The class defining a perm group."""
 

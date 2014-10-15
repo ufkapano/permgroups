@@ -10,14 +10,6 @@ def lcm(a, b):
     """Compute the least common multiple."""
     return a * b / gcd(a, b)
 
-def factorial(n):
-    """Compute the factorial of n."""
-    res = 1
-    while n > 1:
-        res = res * n
-        n = n - 1
-    return res
-
 def swap(L, i, j):
     """Exchange of two elements on the list."""
     L[i], L[j] = L[j], L[i]
