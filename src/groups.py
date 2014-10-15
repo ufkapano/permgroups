@@ -1,7 +1,4 @@
 #!/usr/bin/python
-#
-# groups.py
-#
 
 from perms import Perm
 
@@ -9,7 +6,7 @@ class Group(dict):
     """The class defining a perm group."""
 
     def __init__(self):
-        """Loads up a Group instance."""
+        """Load up a Group instance."""
         perm = Perm()
         self[perm.label()] = perm
 
@@ -47,15 +44,15 @@ class Group(dict):
         return dict.__contains__(self, perm.label())
 
     def listperms(self):
-        """Returns the list of perms."""
+        """Return the list of perms."""
         return self.values()
 
-    def iterperms(self):            # generator
+    def iterperms(self):
         """The generator for perms from the group."""
         return self.itervalues()
 
     def listlabels(self):
-        """Returns a list of labels."""
+        """Return a list of labels."""
         return self.keys()
 
     def iterlabels(self):
@@ -67,7 +64,7 @@ class Group(dict):
         return self.order() == 1
 
     def orbits(self, points):
-        """Returns a list of orbits."""
+        """Return a list of orbits."""
         used = {}
         orblist = []
         for pt1 in points:
@@ -96,7 +93,7 @@ class Group(dict):
             return tmp == 1
 
     def subgroup_search(self, prop):
-        """Returns a subgroup of all elements satisfying the property."""
+        """Return a subgroup of all elements satisfying the property."""
         # Jezeli prop(perm) jest True, to perm zaliczamy do podgrupy.
         # Funkcja prop() nie moze byc byle jaka.
         newgroup = Group()
@@ -106,7 +103,7 @@ class Group(dict):
         return newgroup
 
     def stabilizer(self, point):
-        """Returns a stabilizer subgroup."""
+        """Return a stabilizer subgroup."""
         newgroup = Group()
         for perm in self.iterperms():
             if perm[point] == point:
@@ -114,7 +111,7 @@ class Group(dict):
         return newgroup
 
     def centralizer(self, other):
-        """G.centralizer(H) - returns the centralizer of H."""
+        """G.centralizer(H) - return the centralizer of H."""
         if other.is_trivial() or self.is_trivial():
             return self
         newgroup = Group()
@@ -125,11 +122,11 @@ class Group(dict):
         return newgroup
 
     def center(self):
-        """Returns the center of the group."""
+        """Return the center of the group."""
         return self.centralizer(self)
 
     def normalizer(self, other):
-        """G.normalizer(H) - returns the normalizer of H."""
+        """G.normalizer(H) - return the normalizer of H."""
         newgroup = Group()
         for perm1 in self.iterperms():
             if all((perm1 * perm2 * ~perm1 in other) 
@@ -169,7 +166,7 @@ class Group(dict):
         return True
 
     def commutator(self, group1, group2):
-        """Returns the commutator of the groups."""
+        """Return the commutator of the groups."""
         newgroup = Group()
         for perm1 in group1.iterperms():
             for perm2 in group2.iterperms():
@@ -177,7 +174,7 @@ class Group(dict):
         return newgroup
 
     def derived_subgroup(self):
-        """Returns the derived subgroup of the group."""
+        """Return the derived subgroup of the group."""
         return self.commutator(self, self)
 
     def action(self, points):
@@ -193,9 +190,5 @@ class Group(dict):
             newdata = [adict[perm[pt]] for pt in points]
             newgroup.insert(Perm(data=newdata))
         return newgroup
-
-if __name__== "__main__":
-
-    pass
 
 # EOF

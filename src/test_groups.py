@@ -1,12 +1,9 @@
 #!/usr/bin/python
-#
-# test_groups.py
-#
-# Tests for groups.
 
+import unittest
 from perms import Perm
 from groups import Group
-import unittest
+
 
 class TestGroupCyclic(unittest.TestCase):
 
@@ -89,7 +86,6 @@ class TestGroupRubik2(unittest.TestCase):
 
     # Koncowe czynnosci czyszczace.
     def tearDown(self): pass
-
 
 
 class TestGroupOrbits(unittest.TestCase):

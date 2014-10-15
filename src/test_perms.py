@@ -1,11 +1,8 @@
 #!/usr/bin/python
-#
-# test_perms.py
-#
-# Tests for perms.
 
-from perms import Perm
 import unittest
+from perms import Perm
+
 
 class TestPerm(unittest.TestCase):
 

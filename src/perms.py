@@ -1,19 +1,17 @@
 #!/usr/bin/python
-#
-# perms.py
 
 def gcd(a, b): 
-    """Computes the greatest common divisor."""
+    """Compute the greatest common divisor."""
     while b:
         a, b = b, a%b
     return a
 
 def lcm(a, b):
-    """Computes the least common multiple."""
+    """Compute the least common multiple."""
     return a * b / gcd(a, b)
 
 def factorial(n):
-    """Computes the factorial of n."""
+    """Compute the factorial of n."""
     res = 1
     while n > 1:
         res = res * n
@@ -29,25 +27,25 @@ class Perm(dict):
     """The class defining a perm."""
 
     def __init__(self, data=None):
-        """Loads up a Perm instance."""
+        """Load up a Perm instance."""
         if data:
             for key, value in enumerate(data):
                 self[key] = value
 
     def __repr__(self):
-        """Computes the string representation of the perm."""
+        """Compute the string representation of the perm."""
         words = ["Perm()"]
         for cycle in self.cycles():
             words.append(str(tuple(cycle)))
         return "".join(words)
 
     def __missing__(self, key):
-        """Enters the key into the dict and returns the key."""
+        """Enter the key into the dict and return the key."""
         self[key] = key
         return key
 
     def __mul__(self, other):
-        """Returns the product of the perms."""
+        """Return the product of the perms."""
         perm = Perm()
         # Ustalam potrzebne klucze.
         # Najpierw other, bo self dostanie nowe klucze.
@@ -59,7 +57,7 @@ class Perm(dict):
         return perm
 
     def label(self, size=None):
-        """Returns the string label for the perm."""
+        """Return the string label for the perm."""
         if size is None:
             size = self.max() + 1
         #letters = "0123456789abcdefghijklmnopqrstuvwxyz"
@@ -93,14 +91,14 @@ class Perm(dict):
         return all(self[key] == key for key in self)
 
     def __invert__(self):   # ~perm
-        """Finds the inverse of the perm."""
+        """Find the inverse of the perm."""
         perm = Perm()
         for key in self:
             perm[self[key]] = key
         return perm
 
     def __call__(self, *args):          # perm(a, b, ...)
-        """Returs the product of the perm and the cycle."""
+        """Return the product of the perm and the cycle."""
         changed = {}
         n = len(args)
         # Trzeba przemnozyc po mojemu self*other.
@@ -111,11 +109,11 @@ class Perm(dict):
         return self
 
     def __getitem__(self, key):          # perm[k]
-        """Finds the item on the given position."""
+        """Find the item on the given position."""
         return dict.__getitem__(self, key)
 
     def order(self):
-        """Returns the order of the perm."""
+        """Return the order of the perm."""
         tmp = [len(cycle) for cycle in self.cycles()]
         return reduce(lcm, tmp, 1)
 
@@ -128,12 +126,11 @@ class Perm(dict):
         return not self == other
 
     def __pow__(self, n):
-        """Finds powers of the perm."""
+        """Find powers of the perm."""
         if n == 0:
             return Perm()
         if n < 0:
             return pow(~self, -n)
-        #print "start n =", n
         perm = self
         if n == 1:
             return self
@@ -154,7 +151,7 @@ class Perm(dict):
         return res
 
     def list(self, size=None):
-        """Returns the perm in array form."""
+        """Return the perm in array form."""
         if size is None:
             #size = self.size     # tu sa dwie koncepcje
             size = self.max() + 1
@@ -163,7 +160,7 @@ class Perm(dict):
         return [self[key] for key in range(size)]
 
     def cycles(self):
-        """Returns a list of cycles for the perm."""
+        """Return a list of cycles for the perm."""
         size = self.max() + 1
         unchecked = [True] * size
         cyclic_form = []
@@ -182,7 +179,7 @@ class Perm(dict):
         return cyclic_form
 
     def parity(self):
-        """Returns the parity of the perm (0 or 1)."""
+        """Return the parity of the perm (0 or 1)."""
         size = self.max() + 1
         unchecked = [True] * size
         c = 0    # liczba cykli w perm, lacznie z jednoelementowymi
@@ -205,13 +202,11 @@ class Perm(dict):
         return self.parity() == 1
 
     def sign(self):
-        """Returns the sign of the perm (+1 or -1)."""
+        """Return the sign of the perm (+1 or -1)."""
         return (1 if self.parity() == 0 else -1)
 
     def support(self):
         """Return the elements in permutation, P, for which P[i] != i."""
-        #size = self.max()+1
-        #return [i for i in range(size) if self[i] != i]
         return [key for key in self if self[key] != key]
 
     def commutes_with(self, other):
@@ -220,12 +215,12 @@ class Perm(dict):
         return self * other == other * self
 
     def commutator(self, other):
-        """Finds the commutator of the perms."""
+        """Find the commutator of the perms."""
         return self * other * ~self * ~other
 
     @classmethod
     def random(cls, size):
-        """Returns a random perm of the given size."""
+        """Return a random perm of the given size."""
         # Usage: Perm.random(size)
         import random
         alist = range(size)
@@ -233,7 +228,7 @@ class Perm(dict):
         return cls(data=alist)
 
     def inversion_vector(self, size):
-        """Returns the inversion vector of the perm."""
+        """Return the inversion vector of the perm."""
         lehmer = [0] * size
         for i in range(size):
             counter = 0
@@ -244,7 +239,7 @@ class Perm(dict):
         return lehmer
 
     def rank_lex(self, size):
-        """Returns the lexicographic rank of the perm."""
+        """Return the lexicographic rank of the perm."""
         lehmer = self.inversion_vector(size) # zapis w systemie silniowym
         lehmer.reverse()   # trzeba odwrocic kolejnosc
         k = size - 1
@@ -305,10 +300,5 @@ class Perm(dict):
             rank = rank / size
             size = size - 1
         return cls(data=alist)
-
-
-if __name__== "__main__":
-
-    pass
 
 # EOF
