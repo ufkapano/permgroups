@@ -18,14 +18,14 @@ class Group(dict):
     def insert(self, perm):
         """The perm inserted into the group generates new 
         perms in order to satisfy the group properties."""
-        label1 = perm.label()
         if perm in self:
             return
         old_order = self.order()
+        label1 = perm.label()
         self[label1] = perm
-        perms_added = {}
+        perms_added = dict()
         perms_added[label1] = perm
-        perms_generated = {}
+        perms_generated = dict()
         new_order = self.order()
         while new_order > old_order:
             old_order = new_order
@@ -37,7 +37,7 @@ class Group(dict):
                         perms_generated[label3] = perm3
             self.update(perms_generated)
             perms_added = perms_generated
-            perms_generated = {}
+            perms_generated = dict()
             new_order = self.order()
 
     def __contains__(self, perm):   # perm in group
@@ -66,8 +66,8 @@ class Group(dict):
 
     def orbits(self, points):
         """Return a list of orbits."""
-        used = {}
-        orblist = []
+        used = dict()
+        orblist = list()
         for pt1 in points:
             if pt1 in used:
                 continue
@@ -90,8 +90,8 @@ class Group(dict):
         if strict:
             return len(self.orbits(points)) == 1
         else:   # ignorujemy nieruchome punkty
-            tmp = sum(1 for orb in self.orbits(points) if len(orb) > 1)
-            return tmp == 1
+            number = sum(1 for orb in self.orbits(points) if len(orb) > 1)
+            return number == 1
 
     def subgroup_search(self, prop):
         """Return a subgroup of all elements satisfying the property."""
@@ -147,8 +147,7 @@ class Group(dict):
         return True
 
     def is_subgroup(self, other):
-        """G1.is_subgroup(G2)
-        Test if G1 is a subgroup of G2.
+        """G1.is_subgroup(G2) - test if G1 is a subgroup of G2.
         Return True if all elements of G1 belong to G2.
         """
         if other.order() % self.order() != 0:
@@ -156,8 +155,7 @@ class Group(dict):
         return all(perm in other for perm in self.iterperms())
 
     def is_normal(self, other):
-        """G1.is_normal(G2)
-        Test if G1 is a normal subgroup of G2.
+        """G1.is_normal(G2) - test if G1 is a normal subgroup of G2.
         For each g1 in G1, g2 in G2, g2*g1*~g2 belongs to G.
         """
         for perm1 in self.iterperms():
@@ -183,7 +181,7 @@ class Group(dict):
         # Sprawdzamy, czy grupa jest tranzytywna na punktach.
         if not self.is_transitive(points):
             raise TypeError("the group is not transitive on points")
-        adict = {}
+        adict = dict()
         for i, pt in enumerate(points):
             adict[pt] = i
         newgroup = Group()

@@ -54,7 +54,7 @@ class Perm(dict):
             size = self.max() + 1
         #letters = "0123456789abcdefghijklmnopqrstuvwxyz"
         letters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_"
-        chars = []
+        chars = list()
         for key in range(size):
             chars.append(letters[self[key]])
         return "".join(chars)
@@ -91,7 +91,7 @@ class Perm(dict):
 
     def __call__(self, *args):          # perm(a, b, ...)
         """Return the product of the perm and the cycle."""
-        changed = {}
+        changed = dict()
         n = len(args)
         # Trzeba przemnozyc po mojemu self*other.
         # Musze wykorzystac tymczasowy slownik.
@@ -155,10 +155,10 @@ class Perm(dict):
         """Return a list of cycles for the perm."""
         size = self.max() + 1
         unchecked = [True] * size
-        cyclic_form = []
+        cyclic_form = list()
         for i in range(size):
             if unchecked[i]:
-                cycle = []
+                cycle = list()
                 cycle.append(i)
                 unchecked[i] = False
                 j = i
@@ -259,7 +259,7 @@ class Perm(dict):
             raise ValueError("size is too small")
         alist.reverse() # to jest inversion vector
         E = range(size)
-        blist = []
+        blist = list()
         # chyba pop(item) nie jest wydajne, bo jest przebudowa listy
         for item in alist:
             blist.append(E.pop(item))

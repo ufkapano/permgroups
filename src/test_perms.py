@@ -8,13 +8,13 @@ class TestPerm(unittest.TestCase):
 
     def setUp(self):
         self.E = Perm()
-        self.R1 = Perm()(0,1)(2,3)
-        self.R2 = Perm()(0,2)(1,3)
-        self.P1 = Perm()(1,2)
-        self.H = Perm()(0,1,3,2)
+        self.R1 = Perm()(0, 1)(2, 3)
+        self.R2 = Perm()(0, 2)(1, 3)
+        self.P1 = Perm()(1, 2)
+        self.H = Perm()(0, 1, 3, 2)
 
     def test_init(self):
-        self.assertEqual(self.P1, Perm()(*(1,2)))
+        self.assertEqual(self.P1, Perm()(*(1, 2)))
         self.assertEqual(self.P1, Perm(data=[0, 2, 1]))
         self.assertEqual(Perm(), Perm()(1)(2)) # singletony
 
@@ -38,17 +38,17 @@ class TestPerm(unittest.TestCase):
         self.assertFalse(self.H.is_identity())
 
     def test_mul(self):
-        self.assertEqual(self.E*self.E, self.E)
-        self.assertEqual(self.R1*self.E, self.R1)
-        self.assertEqual(self.R1*self.R1, self.E)
-        self.assertNotEqual(self.R1*self.R2, self.E)
+        self.assertEqual(self.E * self.E, self.E)
+        self.assertEqual(self.R1 * self.E, self.R1)
+        self.assertEqual(self.R1 * self.R1, self.E)
+        self.assertNotEqual(self.R1 * self.R2, self.E)
 
     def test_invert(self):
         self.assertEqual(~self.E, self.E)
         self.assertEqual(~self.R1, self.R1)
         self.assertEqual(~self.R2, self.R2)
         self.assertNotEqual(~self.H, self.H)
-        self.assertEqual(self.H*~self.H, self.E)
+        self.assertEqual(self.H * ~self.H, self.E)
 
     def test_order(self):
         self.assertEqual(self.E.order(), 1)
@@ -57,9 +57,9 @@ class TestPerm(unittest.TestCase):
         self.assertEqual(self.H.order(), 4)
 
     def test_cmp(self):
-        self.assertTrue(self.E == Perm(data=[0,1,2]))
+        self.assertTrue(self.E == Perm(data=[0, 1, 2]))
         self.assertFalse(self.H == self.E)
-        self.assertTrue(self.H != self.H*self.H)
+        self.assertTrue(self.H != self.H * self.H)
         self.assertTrue(self.E != self.H)
 
     def test_parity(self):
@@ -72,11 +72,11 @@ class TestPerm(unittest.TestCase):
         self.assertEqual(self.H.sign(), -1)
 
     def test_call(self):
-        self.assertEqual(Perm()(0)(2)()(1,3), Perm()(1,3))
-        self.assertEqual(Perm()(2,3)*Perm()(1,2), Perm()(1,3,2))
-        self.assertEqual(Perm()(2,3)(1,2), Perm()(1,3,2))
-        self.assertEqual(Perm()(1,2)*Perm()(2,3), Perm()(1,2,3))
-        self.assertEqual(Perm()(1,2)(2,3), Perm()(1,2,3))
+        self.assertEqual(Perm()(0)(2)()(1, 3), Perm()(1, 3))
+        self.assertEqual(Perm()(2, 3) * Perm()(1, 2), Perm()(1, 3, 2))
+        self.assertEqual(Perm()(2, 3)(1,2), Perm()(1, 3, 2))
+        self.assertEqual(Perm()(1, 2) * Perm()(2, 3), Perm()(1, 2, 3))
+        self.assertEqual(Perm()(1, 2)(2, 3), Perm()(1, 2, 3))
 
     def test_getitem(self):
         self.assertEqual(self.H[0], 1)
@@ -120,13 +120,13 @@ class TestPerm(unittest.TestCase):
 
     def test_lehmer(self):
         size = 4
-        p = Perm()(0,3)(1,2)   # [3,2,1,0]
-        self.assertEqual(p.inversion_vector(size), [3,2,1,0])
+        p = Perm()(0,3)(1,2)   # [3, 2, 1, 0]
+        self.assertEqual(p.inversion_vector(size), [3, 2, 1, 0])
         self.assertEqual(self.E.rank_lex(size), 0)
         self.assertEqual(self.R1.rank_lex(size), 7)
         self.assertEqual(self.P1.rank_lex(size), 2)
         self.assertEqual(self.H.rank_lex(size), 10)
-        self.assertEqual(Perm.unrank_lex(size,17), Perm()(0,2,1,3))
+        self.assertEqual(Perm.unrank_lex(size, 17), Perm()(0, 2, 1, 3))
 
     def tearDown(self): pass
 
