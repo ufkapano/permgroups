@@ -1,9 +1,12 @@
 #!/usr/bin/python
 
+import random
+
+
 def gcd(a, b): 
     """Compute the greatest common divisor."""
     while b:
-        a, b = b, a%b
+        a, b = b, a % b
     return a
 
 def lcm(a, b):
@@ -106,8 +109,8 @@ class Perm(dict):
 
     def order(self):
         """Return the order of the perm."""
-        tmp = [len(cycle) for cycle in self.cycles()]
-        return reduce(lcm, tmp, 1)
+        alist = [len(cycle) for cycle in self.cycles()]
+        return reduce(lcm, alist, 1)
 
     def __eq__(self, other):
         """Test if the perms are equal."""
@@ -129,18 +132,18 @@ class Perm(dict):
         elif n == 2:
             return self * self
         else:   # binary exponentiation
-            res = Perm()  # identity
+            result = Perm()  # identity
             while True:
                 if n % 2 == 1:
-                    res = res * perm
-                    n = n - 1 # przez ile pomnozyc tmp
+                    result = result * perm
+                    n = n - 1  # przez ile pomnozyc
                     if n == 0:
                         break
                 if n % 2 == 0:
                     perm = perm * perm
                     n = n / 2  # zmienilo sie perm!
                     #print "n =", n
-        return res
+        return result
 
     def list(self, size=None):
         """Return the perm in array form."""
@@ -214,10 +217,9 @@ class Perm(dict):
     def random(cls, size):
         """Return a random perm of the given size."""
         # Usage: Perm.random(size)
-        import random
-        alist = range(size)
-        random.shuffle(alist)
-        return cls(data=alist)
+        new_data = range(size)
+        random.shuffle(new_data)
+        return cls(data=new_data)
 
     def inversion_vector(self, size):
         """Return the inversion vector of the perm."""
@@ -235,11 +237,11 @@ class Perm(dict):
         lehmer = self.inversion_vector(size) # zapis w systemie silniowym
         lehmer.reverse()   # trzeba odwrocic kolejnosc
         k = size - 1
-        res = lehmer[k]
+        result = lehmer[k]
         while k > 0:   # zmodyfikowany horner
             k = k - 1
-            res = res * (k + 1) + lehmer[k]
-        return res
+            result = result * (k + 1) + lehmer[k]
+        return result
 
     @classmethod
     def unrank_lex(cls, size, rank):
@@ -259,12 +261,12 @@ class Perm(dict):
             raise ValueError("size is too small")
         alist.reverse() # to jest inversion vector
         E = range(size)
-        blist = list()
+        new_data = list()
         # chyba pop(item) nie jest wydajne, bo jest przebudowa listy
         for item in alist:
-            blist.append(E.pop(item))
+            new_data.append(E.pop(item))
         # tutaj E jest juz puste
-        return cls(data=blist)
+        return cls(data=new_data)
 
     def rank_mr(self, size):
         """Myrvold and Ruskey rank of the perm."""
@@ -286,11 +288,11 @@ class Perm(dict):
     @classmethod
     def unrank_mr(cls, size, rank):
         """Myrvold and Ruskey perm unranking."""
-        alist = range(size)
+        new_data = range(size)
         while size > 0:
-            swap(alist, size - 1, rank % size)
+            swap(new_data, size - 1, rank % size)
             rank = rank / size
             size = size - 1
-        return cls(data=alist)
+        return cls(data=new_data)
 
 # EOF

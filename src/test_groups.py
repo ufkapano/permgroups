@@ -5,7 +5,7 @@ from perms import Perm
 from groups import Group
 
 
-class TestGroupCyclic(unittest.TestCase):
+class TestCyclicGroup(unittest.TestCase):
 
     def setUp(self):
         self.H = Perm()(0, 1, 2, 4)(3, 5)
@@ -22,7 +22,7 @@ class TestGroupCyclic(unittest.TestCase):
     def tearDown(self): pass
 
 
-class TestGroupSymmetric(unittest.TestCase):
+class TestSymmetricGroup(unittest.TestCase):
 
     def setUp(self):
         self.group = Group()
@@ -42,7 +42,7 @@ class TestGroupSymmetric(unittest.TestCase):
     def tearDown(self): pass
 
 
-class TestGroupAlternating(unittest.TestCase):
+class TestAlternatingGroup(unittest.TestCase):
 
     def setUp(self):
         self.group = Group()
@@ -59,7 +59,7 @@ class TestGroupAlternating(unittest.TestCase):
     def tearDown(self): pass
 
 
-class TestGroupRubik2(unittest.TestCase):
+class TestRubikGroup2(unittest.TestCase):
 
     def setUp(self):
         # N = 21
@@ -172,15 +172,6 @@ class TestSubgroup(unittest.TestCase):
 
 if __name__== "__main__":
 
-    #unittest.main()     # run tests
-    suite1 = unittest.TestLoader().loadTestsFromTestCase(TestGroupCyclic)
-    suite2 = unittest.TestLoader().loadTestsFromTestCase(TestGroupSymmetric)
-    suite3 = unittest.TestLoader().loadTestsFromTestCase(TestGroupAlternating)
-    suite4 = unittest.TestLoader().loadTestsFromTestCase(TestGroupRubik2)
-    suite7 = unittest.TestLoader().loadTestsFromTestCase(TestGroupOrbits)
-    suite8 = unittest.TestLoader().loadTestsFromTestCase(TestSubgroup)
-    suite = unittest.TestSuite(
-    [suite1, suite2, suite3, suite4, suite7, suite8])
-    unittest.TextTestRunner(verbosity=2).run(suite)
+    unittest.main()     # run tests
 
 # EOF
