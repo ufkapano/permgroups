@@ -97,30 +97,30 @@ class Group(dict):
         """Return a subgroup of all elements satisfying the property."""
         # Jezeli prop(perm) jest True, to perm zaliczamy do podgrupy.
         # Funkcja prop() nie moze byc byle jaka.
-        newgroup = Group()
+        new_group = Group()
         for perm in self.iterperms():
             if prop(perm):
-                newgroup.insert(perm)
-        return newgroup
+                new_group.insert(perm)
+        return new_group
 
     def stabilizer(self, point):
         """Return a stabilizer subgroup."""
-        newgroup = Group()
+        new_group = Group()
         for perm in self.iterperms():
             if perm[point] == point:
-                newgroup.insert(perm)
-        return newgroup
+                new_group.insert(perm)
+        return new_group
 
     def centralizer(self, other):
         """G.centralizer(H) - return the centralizer of H."""
         if other.is_trivial() or self.is_trivial():
             return self
-        newgroup = Group()
+        new_group = Group()
         for perm1 in self.iterperms():
             if all(perm1 * perm2 == perm2 * perm1 
             for perm2 in other.iterperms()):
-                newgroup.insert(perm1)
-        return newgroup
+                new_group.insert(perm1)
+        return new_group
 
     def center(self):
         """Return the center of the group."""
@@ -128,12 +128,12 @@ class Group(dict):
 
     def normalizer(self, other):
         """G.normalizer(H) - return the normalizer of H."""
-        newgroup = Group()
+        new_group = Group()
         for perm1 in self.iterperms():
             if all((perm1 * perm2 * ~perm1 in other) 
             for perm2 in other.iterperms()):
-                newgroup.insert(perm1)
-        return newgroup
+                new_group.insert(perm1)
+        return new_group
 
     def is_abelian(self):
         """Test if the group is abelian."""
@@ -166,11 +166,11 @@ class Group(dict):
 
     def commutator(self, group1, group2):
         """Return the commutator of the groups."""
-        newgroup = Group()
+        new_group = Group()
         for perm1 in group1.iterperms():
             for perm2 in group2.iterperms():
-                newgroup.insert(perm1.commutator(perm2))
-        return newgroup
+                new_group.insert(perm1.commutator(perm2))
+        return new_group
 
     def derived_subgroup(self):
         """Return the derived subgroup of the group."""
@@ -184,10 +184,10 @@ class Group(dict):
         adict = dict()
         for i, pt in enumerate(points):
             adict[pt] = i
-        newgroup = Group()
+        new_group = Group()
         for perm in self.iterperms():
-            newdata = [adict[perm[pt]] for pt in points]
-            newgroup.insert(Perm(data=newdata))
-        return newgroup
+            new_data = [adict[perm[pt]] for pt in points]
+            new_group.insert(Perm(data=new_data))
+        return new_group
 
 # EOF
