@@ -52,18 +52,18 @@ class Group(set):
 
     def orbits(self, points):
         """Return a list of orbits."""
-        used = dict()
+        used = set()
         orblist = list()
         for pt1 in points:
             if pt1 in used:
                 continue
             orb = [pt1]     # we start a new orbit
-            used[pt1] = True
+            used.add(pt1)
             for perm in self:
                 pt2 = perm[pt1]
                 if pt2 not in used:
                     orb.append(pt2)
-                    used[pt2] = True
+                    used.add(pt2)
             orblist.append(orb)
         return orblist
 
