@@ -128,6 +128,15 @@ class TestPerm(unittest.TestCase):
         self.assertEqual(self.H.rank_lex(size), 10)
         self.assertEqual(Perm.unrank_lex(size, 17), Perm()(0, 2, 1, 3))
 
+    def test_hash(self):
+        aset = set()
+        aset.add(self.E)
+        aset.add(self.E)  # ignored
+        self.assertEqual(len(aset), 1)
+        aset.add(self.H)
+        aset.add(self.H)  # ignored
+        self.assertEqual(len(aset), 2)
+
     def tearDown(self): pass
 
 if __name__== "__main__":

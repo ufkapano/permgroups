@@ -295,4 +295,8 @@ class Perm(dict):
             size = size - 1
         return cls(data=new_data)
 
+    def __hash__(self):
+        """Hashable perms."""
+        return hash(tuple(self.list()))
+
 # EOF
