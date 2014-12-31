@@ -91,11 +91,8 @@ class Group(set):
 
     def stabilizer(self, point):
         """Return a stabilizer subgroup."""
-        new_group = Group()
-        for perm in self:
-            if perm[point] == point:
-                new_group.insert(perm)
-        return new_group
+        return self.subgroup_search(
+            lambda perm: perm[point] == point)
 
     def centralizer(self, other):
         """G.centralizer(H) - return the centralizer of H."""

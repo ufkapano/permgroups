@@ -117,7 +117,7 @@ class Perm(dict):
         return (self * ~other).is_identity()
 
     def __ne__(self, other):
-        """Test if the perms are notequal."""
+        """Test if the perms are not equal."""
         return not self == other
 
     def __pow__(self, n):
