@@ -12,7 +12,10 @@ It is mainly the presentation of the permutation groups interface with
 methods for the group order, subgroups (normalizer, centralizer, center, 
 stabilizer), orbits, and several tests.
 
+The project is moved from *Google Code*.
+
 References
+----------
 
 [1] A. Kapanowski, *Python for education: permutations*. 
 http://arxiv.org/abs/1307.7042
@@ -20,5 +23,3 @@ http://arxiv.org/abs/1307.7042
 [2] A. Kapanowski, The Python Papers 9, 3 (2014). 
 *Python for education: permutations*. 
 http://ojs.pythonpapers.org/index.php/tpp/article/view/258 
-
-The project is moved from Google Code.
