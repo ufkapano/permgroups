@@ -5,26 +5,6 @@ from perms import Perm
 from setsgroups import Group
 
 
-class TestSymmetricGroup(unittest.TestCase):
-
-    def setUp(self):
-        self.group = Group()
-
-    # Test grupy symetrycznej.
-    def test_insert(self):
-        self.assertEqual(self.group.order(), 1)
-        self.group.insert(Perm()(0, 1))
-        self.assertEqual(self.group.order(), 2)
-        self.group.insert(Perm()(1, 2))
-        self.assertEqual(self.group.order(), 6)
-        self.group.insert(Perm()(2, 3))
-        self.assertEqual(self.group.order(), 24)
-        #self.group.insert(Perm(,(3, 4)))
-        #self.assertEqual(self.group.order(), 120)
-
-    def tearDown(self): pass
-
-
 class TestRubikGroup2(unittest.TestCase):
 
     def setUp(self):

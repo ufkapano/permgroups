@@ -20,6 +20,8 @@ class TestAlternatingGroup(unittest.TestCase):
         self.assertEqual(self.group.order(), 12)
         self.group.insert(Perm()(2, 3, 4))
         self.assertEqual(self.group.order(), 60)
+        self.assertFalse(Perm()(0, 1) in self.group)
+        self.assertTrue(Perm()(*range(self.N)) in self.group) # N is odd
         self.assertTrue(self.group.is_transitive(points=range(self.N)))
         self.assertEqual(len(self.group.orbits(range(self.N))), 1)
 
