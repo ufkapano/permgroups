@@ -25,23 +25,6 @@ class TestSymmetricGroup(unittest.TestCase):
     def tearDown(self): pass
 
 
-class TestAlternatingGroup(unittest.TestCase):
-
-    def setUp(self):
-        self.group = Group()
-
-    def test_insert(self):
-        self.assertEqual(self.group.order(), 1)
-        self.group.insert(Perm()(0, 1, 2))
-        self.assertEqual(self.group.order(), 3)
-        self.group.insert(Perm()(1, 2, 3))
-        self.assertEqual(self.group.order(), 12)
-        self.group.insert(Perm()(2, 3, 4))
-        self.assertEqual(self.group.order(), 60)
-
-    def tearDown(self): pass
-
-
 class TestRubikGroup2(unittest.TestCase):
 
     def setUp(self):

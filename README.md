@@ -18,8 +18,8 @@ References
 ----------
 
 [1] A. Kapanowski, *Python for education: permutations*. 
-http://arxiv.org/abs/1307.7042
+http://arxiv.org/abs/1307.7042 [draft]
 
 [2] A. Kapanowski, The Python Papers 9, 3 (2014). 
-*Python for education: permutations*. 
+*Python for education: permutations*. [final version]
 http://ojs.pythonpapers.org/index.php/tpp/article/view/258 
