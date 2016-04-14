@@ -25,6 +25,18 @@ class TestAlternatingGroup(unittest.TestCase):
         self.assertTrue(self.group.is_transitive(points=range(self.N)))
         self.assertEqual(len(self.group.orbits(range(self.N))), 1)
 
+    def test_alt_n(self):
+        self.N = 5
+        self.assertTrue(self.N > 2)
+        self.group = Group()
+        order = 1
+        for i in range(self.N-2):
+            self.group.insert(Perm()(i, i+1, i+2))
+            order = order * (i+3)
+            self.assertEqual(self.group.order(), order)
+        self.assertTrue(self.group.is_transitive(points=range(self.N)))
+        self.assertEqual(len(self.group.orbits(range(self.N))), 1)
+
     def tearDown(self): pass
 
 if __name__== "__main__":

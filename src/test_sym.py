@@ -27,6 +27,17 @@ class TestSymmetricGroup(unittest.TestCase):
         self.assertTrue(self.group.is_transitive(points=range(self.N)))
         self.assertEqual(len(self.group.orbits(range(self.N))), 1)
 
+    def test_sym_n(self):
+        self.N = 4
+        self.group = Group()
+        order = 1
+        for i in range(self.N-1):
+            self.group.insert(Perm()(i, i+1))
+            order *= (i+2)
+            self.assertEqual(self.group.order(), order)
+        self.assertTrue(self.group.is_transitive(points=range(self.N)))
+        self.assertEqual(len(self.group.orbits(range(self.N))), 1)
+
     def tearDown(self): pass
 
 if __name__== "__main__":
