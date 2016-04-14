@@ -5,23 +5,6 @@ from perms import Perm
 from setsgroups import Group
 
 
-class TestCyclicGroup(unittest.TestCase):
-
-    def setUp(self):
-        self.H = Perm()(0, 1, 2, 4)(3, 5)
-        self.group = Group()
-
-    def test_insert(self):
-        self.assertEqual(self.group.order(), 1)
-        self.group.insert(self.H)
-        self.assertEqual(self.group.order(), 4)
-        self.assertTrue(Perm() in self.group)
-        self.assertTrue(self.H in self.group)
-        self.assertFalse(Perm()(0, 1, 2, 3, 4, 5) in self.group)
-
-    def tearDown(self): pass
-
-
 class TestSymmetricGroup(unittest.TestCase):
 
     def setUp(self):
