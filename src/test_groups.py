@@ -5,33 +5,6 @@ from perms import Perm
 from groups import Group
 
 
-class TestRubikGroup2(unittest.TestCase):
-
-    def setUp(self):
-        # N = 21
-        self.group = Group()
-
-    # Test grupy kostki Rubika.
-    def test_insert(self):
-        self.assertEqual(self.group.order(), 1)
-        self.group.insert(Perm()(0, 1, 2)(3, 5, 4))
-        self.assertEqual(self.group.order(), 3)
-        self.group.insert(Perm()(0, 3)(1, 4)(2, 5))
-        self.assertEqual(self.group.order(), 6)
-        self.group.insert(Perm()(0, 6)(1, 7)(2, 8))
-        self.assertEqual(self.group.order(), 6 * 9)
-        #self.group.insert(Perm()(0, 9)(1, 10)(2, 11))
-        #self.assertEqual(self.group.order(), 6 * 9 * 12)
-        #self.group.insert(Perm()(0, 12)(1, 13)(2, 14))
-        #self.assertEqual(self.group.order(), 6 * 9 * 12 * 15)
-        #self.group.insert(Perm()(0, 15)(1, 16)(2, 17))
-        #self.assertEqual(self.group.order(), 6 * 9 * 12 * 15 * 18)
-        #self.group.insert(Perm()(0, 18)(1, 19)(2, 20))
-        #self.assertEqual(self.group.order(), 6 * 9 * 12 * 15 * 18 * 21)
-
-    def tearDown(self): pass
-
-
 class TestGroupOrbits(unittest.TestCase):
 
     def setUp(self): pass
