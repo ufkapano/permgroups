@@ -53,19 +53,19 @@ class Group(set):
     def orbits(self, points):
         """Return a list of orbits."""
         used = set()
-        orblist = list()
+        orbit_list = list()
         for pt1 in points:
             if pt1 in used:
                 continue
-            orb = [pt1]     # we start a new orbit
+            orbit = [pt1]     # we start a new orbit
             used.add(pt1)
             for perm in self:
                 pt2 = perm[pt1]
                 if pt2 not in used:
-                    orb.append(pt2)
+                    orbit.append(pt2)
                     used.add(pt2)
-            orblist.append(orb)
-        return orblist
+            orbit_list.append(orbit)
+        return orbit_list
 
     def is_transitive(self, points, strict=True):
         """Test if the group is transitive (has a single orbit).
@@ -122,16 +122,16 @@ class Group(set):
         return True
 
     def is_subgroup(self, other):
-        """G1.is_subgroup(G2) - test if G1 is a subgroup of G2.
-        Return True if all elements of G1 belong to G2.
+        """H.is_subgroup(G) - test if H is a subgroup of G.
+        Return True if all elements of H belong to G.
         """
         if other.order() % self.order() != 0:
             return False
         return all(perm in other for perm in self)
 
     def is_normal(self, other):
-        """G1.is_normal(G2) - test if G1 is a normal subgroup of G2.
-        For each g1 in G1, g2 in G2, g2*g1*~g2 belongs to G.
+        """H.is_normal(G) - test if H is a normal subgroup of G.
+        For each h in H, g in G, g*h*~g belongs to H.
         """
         for perm1 in self:
             for perm2 in other:
