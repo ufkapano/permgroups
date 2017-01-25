@@ -14,16 +14,18 @@ class Group(set):
 
     order = set.__len__            # the group order
 
+    # __contains__ dziedziczone z set
+
     def insert(self, perm):
         """The perm inserted into the group generates new 
         perms in order to satisfy the group properties."""
         if perm in self:
             return
-        old_order = len(self)
+        old_order = self.order()
         self.add(perm)
         perms_added = set([perm])
         perms_generated = set()
-        new_order = len(self)
+        new_order = self.order()
         while new_order > old_order:
             old_order = new_order
             for perm1 in perms_added:
@@ -34,9 +36,7 @@ class Group(set):
             self.update(perms_generated)
             perms_added = perms_generated
             perms_generated = set()
-            new_order = len(self)
-
-    # __contains__ dziedziczone z set
+            new_order = self.order()
 
     def listperms(self):
         """Return the list of perms."""
@@ -98,11 +98,8 @@ class Group(set):
         """G.centralizer(H) - return the centralizer of H."""
         if other.is_trivial() or self.is_trivial():
             return self
-        new_group = Group()
-        for perm1 in self:
-            if all(perm1 * perm2 == perm2 * perm1 for perm2 in other):
-                new_group.insert(perm1)
-        return new_group
+        return self.subgroup_search(lambda perm:
+            all(perm * perm2 == perm2 * perm for perm2 in other))
 
     def center(self):
         """Return the center of the group."""
@@ -110,11 +107,8 @@ class Group(set):
 
     def normalizer(self, other):
         """G.normalizer(H) - return the normalizer of H."""
-        new_group = Group()
-        for perm1 in self:
-            if all((perm1 * perm2 * ~perm1 in other) for perm2 in other):
-                new_group.insert(perm1)
-        return new_group
+        return self.subgroup_search(lambda perm:
+            all((perm * perm2 * ~perm in other) for perm2 in other))
 
     def is_abelian(self):
         """Test if the group is abelian."""
@@ -144,6 +138,14 @@ class Group(set):
                 if perm2 * perm1 * ~perm2 not in self:
                     return False
         return True
+
+    def normal_closure(self, other):
+        """Return the normal closure (conjugate closure)."""
+        new_group = Group()
+        for perm1 in self:
+            for perm2 in other:
+                new_group.insert(perm1 * perm2 * ~perm1)
+        return new_group
 
     def commutator(self, group1, group2):
         """Return the commutator of the groups."""

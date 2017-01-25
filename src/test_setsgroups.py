@@ -78,14 +78,51 @@ class TestSubgroup(unittest.TestCase):
         self.group2 = self.group1.center()
         self.assertEqual(self.group2.order(), 1)
 
+    def test_normalizer(self):
+        pass
+
+    def test_normal_closure(self):
+        n = 5
+        # Make Cyclic(5).
+        C5 = Group()
+        C5.insert(Perm()(*range(n)))
+        self.assertEqual(C5.order(), n)
+        # Make Sym(5).
+        S5 = Group()
+        S5.insert(Perm()(*range(n)))
+        S5.insert(Perm()(0, 1))
+        self.assertEqual(S5.order(), 120)
+        A5 = S5.normal_closure(C5)   # we get Alt(5)
+        self.assertEqual(A5.order(), 60)
+        for perm in A5:
+            self.assertTrue(perm.is_even())
+
+    def test_derived_subgroup(self):
+        pass
+
     def test_is_subgroup(self):
         self.group2 = Group()
-        # Tworze grupe cykliczna.
+        # Tworze grupe cykliczna C_N.
         self.group2.insert(Perm()(*range(self.N)))
+        self.assertEqual(self.group2.order(), self.N)
         self.assertTrue(self.group2.is_subgroup(self.group1))
         self.assertTrue(self.group2.is_abelian())
         self.assertFalse(self.group1.is_abelian())
         self.assertFalse(self.group2.is_normal(self.group1))
+
+    def test_is_normal(self):
+        a = Perm()(0, 1, 2)
+        b = Perm()(0, 1)
+        c = Perm()(0, 2, 1)
+        G = Group()
+        G.insert(a)
+        G.insert(b)
+        self.assertEqual(G.order(), 6)   # G = S_3
+        H = Group()
+        H.insert(a)
+        H.insert(c)
+        self.assertEqual(H.order(), 3)   # H = A_3
+        self.assertTrue(H.is_normal(G))
 
     def tearDown(self): pass
 

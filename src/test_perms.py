@@ -141,8 +141,6 @@ class TestPerm(unittest.TestCase):
 
 if __name__== "__main__":
 
-    #unittest.main()     # run tests
-    suite = unittest.TestLoader().loadTestsFromTestCase(TestPerm)
-    unittest.TextTestRunner(verbosity=2).run(suite)
+    unittest.main()
 
 # EOF

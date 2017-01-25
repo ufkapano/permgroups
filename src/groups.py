@@ -112,12 +112,8 @@ class Group(dict):
         """G.centralizer(H) - return the centralizer of H."""
         if other.is_trivial() or self.is_trivial():
             return self
-        new_group = Group()
-        for perm1 in self.iterperms():
-            if all(perm1 * perm2 == perm2 * perm1 
-            for perm2 in other.iterperms()):
-                new_group.insert(perm1)
-        return new_group
+        return self.subgroup_search(lambda perm:
+            all(perm * perm2 == perm2 * perm for perm2 in other.iterperms()))
 
     def center(self):
         """Return the center of the group."""
@@ -125,12 +121,8 @@ class Group(dict):
 
     def normalizer(self, other):
         """G.normalizer(H) - return the normalizer of H."""
-        new_group = Group()
-        for perm1 in self.iterperms():
-            if all((perm1 * perm2 * ~perm1 in other) 
-            for perm2 in other.iterperms()):
-                new_group.insert(perm1)
-        return new_group
+        return self.subgroup_search(lambda perm:
+            all((perm * perm2 * ~perm in other) for perm2 in other.iterperms()))
 
     def is_abelian(self):
         """Test if the group is abelian."""
@@ -144,22 +136,30 @@ class Group(dict):
         return True
 
     def is_subgroup(self, other):
-        """G1.is_subgroup(G2) - test if G1 is a subgroup of G2.
-        Return True if all elements of G1 belong to G2.
+        """H.is_subgroup(G) - test if H is a subgroup of G.
+        Return True if all elements of H belong to G.
         """
         if other.order() % self.order() != 0:
             return False
         return all(perm in other for perm in self.iterperms())
 
     def is_normal(self, other):
-        """G1.is_normal(G2) - test if G1 is a normal subgroup of G2.
-        For each g1 in G1, g2 in G2, g2*g1*~g2 belongs to G.
+        """H.is_normal(G) - test if H is a normal subgroup of G.
+        For each h in H, g in G, g*h*~g belongs to H.
         """
         for perm1 in self.iterperms():
             for perm2 in other.iterperms():
                 if perm2 * perm1 * ~perm2 not in self:
                     return False
         return True
+
+    def normal_closure(self, other):
+        """Return the normal closure (conjugate closure)."""
+        new_group = Group()
+        for perm1 in self.iterperms():
+            for perm2 in other.iterperms():
+                new_group.insert(perm1 * perm2 * ~perm1)
+        return new_group
 
     def commutator(self, group1, group2):
         """Return the commutator of the groups."""
