@@ -66,20 +66,20 @@ class Group(dict):
 
     def orbits(self, points):
         """Return a list of orbits."""
-        used = dict()
-        orblist = list()
+        used = dict()   # set can be used
+        orbit_list = list()
         for pt1 in points:
             if pt1 in used:
                 continue
-            orb = [pt1]     # we start a new orbit
+            orbit = [pt1]     # we start a new orbit
             used[pt1] = True
             for perm in self.iterperms():
                 pt2 = perm[pt1]
                 if pt2 not in used:
-                    orb.append(pt2)
+                    orbit.append(pt2)
                     used[pt2] = True
-            orblist.append(orb)
-        return orblist
+            orbit_list.append(orbit)
+        return orbit_list
 
     def is_transitive(self, points, strict=True):
         """Test if the group is transitive (has a single orbit).
@@ -90,7 +90,7 @@ class Group(dict):
         if strict:
             return len(self.orbits(points)) == 1
         else:   # ignorujemy nieruchome punkty
-            number = sum(1 for orb in self.orbits(points) if len(orb) > 1)
+            number = sum(1 for orbit in self.orbits(points) if len(orbit) > 1)
             return number == 1
 
     def subgroup_search(self, prop):
@@ -178,7 +178,7 @@ class Group(dict):
         # Sprawdzamy, czy grupa jest tranzytywna na punktach.
         if not self.is_transitive(points):
             raise TypeError("the group is not transitive on points")
-        adict = dict()
+        adict = dict()   # for numbering of points
         for i, pt in enumerate(points):
             adict[pt] = i
         new_group = Group()
