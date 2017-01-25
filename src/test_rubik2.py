@@ -39,23 +39,20 @@ class TestRubikGroup2(unittest.TestCase):
 
     def test_insert_generators(self):
         for perm in self.generators:
-            #print "insert", perm
             #self.group.insert(perm)
-            pass   # too slow and to big
+            pass   # too slow and too big
         #self.assertEqual(self.group.order(), self.order_rubik2)
 
     def test_insert_face_turns(self):
         for perm in self.face_turns:
-            #print "insert", perm
             #self.group.insert(perm)
-            pass   # too slow and to big
+            pass   # too slow and too big
         #self.assertEqual(self.group.order(), self.order_rubik2)
 
     def test_insert_quarter_turns(self):
         for perm in self.quarter_turns:
-            #print "insert", perm
             #self.group.insert(perm)
-            pass   # too slow and to big
+            pass   # too slow and too big
         #self.assertEqual(self.group.order(), self.order_rubik2)
 
     def test_insert(self):
