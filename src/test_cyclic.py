@@ -20,9 +20,20 @@ class TestCyclicGroup(unittest.TestCase):
         self.assertFalse(self.group.is_trivial())
         self.assertTrue(Perm() in self.group)
         self.assertTrue(self.H in self.group)
-        self.assertFalse(Perm()(*range(self.N)) in self.group)
-        self.assertFalse(self.group.is_transitive(points=range(self.N)))
-        self.assertEqual(len(self.group.orbits(range(self.N))), 2)
+        points = range(self.N)
+        self.assertFalse(Perm()(*points) in self.group)
+        self.assertEqual(self.group.orbits(points), [[0, 4, 2, 1], [3, 5]])
+        self.assertEqual(len(self.group.orbits(points)), 2)
+        self.assertFalse(self.group.is_transitive(points))
+
+    def test_cyclic6(self):
+        points = range(5)
+        C6 = Group()
+        C6.insert(Perm()(0, 1, 2)(3, 4))
+        self.assertEqual(C6.order(), 6)
+        self.assertEqual(C6.orbits(points), [[0, 2, 1], [3, 4]])
+        self.assertEqual(len(C6.orbits(points)), 2)
+        self.assertFalse(C6.is_transitive(points))
 
     def tearDown(self): pass
 

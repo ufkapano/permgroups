@@ -4,9 +4,9 @@ perm, p, q - permutations
 points - a sequence of items
 prop - function, prop(perm) is bool
 G, H, K - permutation groups
---------------------------------------------------------------
+----------------------------------------------------------------------
 Method name                   Short description
---------------------------------------------------------------
+----------------------------------------------------------------------
 Group()                       return a trivial group
 G.order()                     return the group order
 G.is_trivial()                return bool
@@ -30,5 +30,5 @@ G.stabilizer(point)           return a stabilizer subgroup
 G.orbits(points)              return a list of orbits
 G.is_transitive(points)       return True if G is transitive
 G.action(points)              return an induced group
---------------------------------------------------------------
+----------------------------------------------------------------------
 EOF
