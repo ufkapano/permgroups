@@ -1,0 +1,41 @@
+INTERFACE FOR PERMUTATIONS
+
+perm, p, q - permutations
+size, i - int
+--------------------------------------------------------------
+Method name                   Short description
+--------------------------------------------------------------
+Perm()                        return the identity perm
+Perm()(0, 2, 1)(3, 4)         return a perm from cycles
+Perm(data=[2, 0, 1, 4, 3])    return a perm from a list
+perm.is_identity()            return bool
+~perm                         return the inverse of the perm
+p * q                         return the product
+p == q, p != q                return bool
+perm[i]                       find the item on the given position
+pow(perm, i), perm ** i       find powers
+
+perm.support()                return items for which perm[i] != i
+perm.min()                    return min(perm.support())
+perm.max()                    return max(perm.support())
+perm.list(size)               return the perm in list form
+perm.label(size)              return the string label
+perm.cycles()                 return a list of cycles
+perm.order()                  return the perm order
+
+perm.parity()                 return the parity (0 or 1)
+perm.is_even()                return bool
+perm.is_odd()                 return bool
+perm.sign()                   return the sign (+1 or -1)
+
+p.commutes_with(q)            return bool
+p.commutator(q)               return the commutator
+Perm.random(size)             return a random perm
+
+perm.inversion_vector(size)   return the inversion vector
+perm.rank_lex(size)           return the lexicographic rank
+Perm.unrank_lex(size, i)      return a perm (lexicographic unranking)
+perm.rank_mr(size)            return the Myrvold and Ruskey rank
+Perm.unrank_mr(size, i)       return a perm (Myrvold and Ruskey unranking)
+--------------------------------------------------------------
+EOF

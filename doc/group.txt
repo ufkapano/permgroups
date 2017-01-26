@@ -1,0 +1,34 @@
+INTERFACE FOR PERMUTATION GROUPS
+
+perm, p, q - permutations
+points - a sequence of items
+prop - function, prop(perm) is bool
+G, H, K - permutation groups
+--------------------------------------------------------------
+Method name                   Short description
+--------------------------------------------------------------
+Group()                       return a trivial group
+G.order()                     return the group order
+G.is_trivial()                return bool
+perm in G                     return bool
+G.insert(perm)                generate new perms in G from the perm
+G.iterperms()                 generate perms from G on demand
+G.iterlabels()                generate labels from G on demand
+G.is_abelian()                return bool
+H.is_subgroup(G)              return True if H is a subgroup of G
+H.is_normal(G)                return True if H is a normal subgroup of G
+
+G.subgroup_search(prop)       return a subgroup with the property
+G.normal_closure(H)           return the normal closure of H in G
+G.normalizer(H)               return the normalizer of H in G
+G.centralizer(H)              return the centralizer of H in G
+G.center()                    return the center of G
+G.commutator(H, K)            return the commutator of the groups
+G.derived_subgroup()          return the derived subgroup of G
+G.stabilizer(point)           return a stabilizer subgroup
+
+G.orbits(points)              return a list of orbits
+G.is_transitive(points)       return True if G is transitive
+G.action(points)              return an induced group
+--------------------------------------------------------------
+EOF
