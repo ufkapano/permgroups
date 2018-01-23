@@ -96,7 +96,7 @@ class Perm(dict):
         """Return the product of the perm and the cycle."""
         changed = dict()
         n = len(args)
-        # Trzeba przemnozyc po mojemu self*other.
+        # Trzeba przemnozyc po mojemu self * other.
         # Musze wykorzystac tymczasowy slownik.
         for i in range(n):
             changed[args[i]] = self[args[(i + 1) % n]]
