@@ -2,7 +2,8 @@
 
 import unittest
 from perms import Perm
-from groups import Group
+#from groups import Group
+from setsgroups import Group
 
 # +-----------+
 # | 1    2   3|

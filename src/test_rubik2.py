@@ -16,7 +16,7 @@ from setsgroups import Group
 # |20  0|
 # +-----+
 
-class TestRubikGroup2(unittest.TestCase):
+class TestRubikGroup2Corner(unittest.TestCase):
 
     def setUp(self):
         self.N = 21
