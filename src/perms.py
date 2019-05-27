@@ -1,6 +1,13 @@
 #!/usr/bin/python
 
+try:
+    integer_types = (int, long)
+except NameError:   # Python 3
+    integer_types = (int,)
+    xrange = range
+
 import random
+from functools import reduce
 
 
 def gcd(a, b): 
@@ -11,7 +18,7 @@ def gcd(a, b):
 
 def lcm(a, b):
     """Compute the least common multiple."""
-    return a * b / gcd(a, b)
+    return a * b // gcd(a, b)
 
 def swap(L, i, j):
     """Exchange of two elements on the list."""
@@ -98,7 +105,7 @@ class Perm(dict):
         n = len(args)
         # Trzeba przemnozyc po mojemu self * other.
         # Musze wykorzystac tymczasowy slownik.
-        for i in range(n):
+        for i in xrange(n):
             changed[args[i]] = self[args[(i + 1) % n]]
         self.update(changed)
         return self
@@ -141,7 +148,7 @@ class Perm(dict):
                         break
                 if n % 2 == 0:
                     perm = perm * perm
-                    n = n / 2  # zmienilo sie perm!
+                    n = n // 2  # zmienilo sie perm!
                     #print "n =", n
         return result
 
@@ -217,7 +224,7 @@ class Perm(dict):
     def random(cls, size):
         """Return a random perm of the given size."""
         # Usage: Perm.random(size)
-        new_data = range(size)
+        new_data = list(range(size))
         random.shuffle(new_data)
         return cls(data=new_data)
 
@@ -255,17 +262,17 @@ class Perm(dict):
             i = i + 1
             #alist.append(rank%i)
             alist[i - 1] = rank % i
-            rank = rank / i
-        #print "zostal rank", rank
+            rank = rank // i
         if rank > 0:
             raise ValueError("size is too small")
         alist.reverse() # to jest inversion vector
-        E = range(size)
+        E = list(range(size))
         new_data = list()
         # chyba pop(item) nie jest wydajne, bo jest przebudowa listy
         for item in alist:
             new_data.append(E.pop(item))
         # tutaj E jest juz puste
+        assert len(E) == 0
         return cls(data=new_data)
 
     def rank_mr(self, size):
@@ -288,10 +295,10 @@ class Perm(dict):
     @classmethod
     def unrank_mr(cls, size, rank):
         """Myrvold and Ruskey perm unranking."""
-        new_data = range(size)
+        new_data = list(range(size))
         while size > 0:
             swap(new_data, size - 1, rank % size)
-            rank = rank / size
+            rank = rank // size
             size = size - 1
         return cls(data=new_data)
 

@@ -1,5 +1,5 @@
-perms-dict
-==========
+Permutation groups (perms-dict repo)
+====================================
 
 Python implementation of permutations is presented. 
 Two classes are introduced: *Perm* for permutations, 
@@ -11,6 +11,7 @@ The class *Group* is very simple and it is also based on dictionaries.
 It is mainly the presentation of the permutation groups interface with 
 methods for the group order, subgroups (normalizer, centralizer, center, 
 stabilizer), orbits, and several tests.
+The code is written with Python 2.7 and Python 3.2.
 
 The project is moved from *Google Code*.
 
@@ -23,3 +24,12 @@ http://arxiv.org/abs/1307.7042 [draft]
 [2] A. Kapanowski, The Python Papers 9, 3 (2014). 
 *Python for education: permutations*. [final version]
 http://ojs.pythonpapers.org/index.php/tpp/article/view/258 
+
+Contributors
+------------
+
+Andrzej Kapanowski (project leader)
+
+Tomasz Gądek
+
+EOF

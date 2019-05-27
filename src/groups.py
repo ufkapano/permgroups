@@ -44,21 +44,15 @@ class Group(dict):
         """ Test if the perm belongs to the group."""
         return dict.__contains__(self, perm.label())
 
-    def listperms(self):
-        """Return the list of perms."""
-        return self.values()
-
     def iterperms(self):
         """The generator for perms from the group."""
-        return self.itervalues()
-
-    def listlabels(self):
-        """Return a list of labels."""
-        return self.keys()
+        for key in self:
+            yield self[key]
 
     def iterlabels(self):
         """The generator for perm labels from the group."""
-        return self.iterkeys()
+        for key in self:
+            yield key
 
     def is_trivial(self):
         """Test if the group is trivial."""
