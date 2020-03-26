@@ -1,0 +1,19 @@
+LINUX WITH PYTHON AND GIT INSTALLED
+----------------------------------------------------------------------
+1. Clone the project into the home directory
+
+$ cd
+$ git clone https://github.com/ufkapano/perms-dict.git
+----------------------------------------------------------------------
+2. Add the perms-dict/src directory to the PYTHONPATH environment variable,
+for .bashrc file you can add:
+
+if [ -n "${PYTHONPATH}" ] ; then
+    PYTHONPATH="${PYTHONPATH}:$HOME/perms-dict/src"
+else
+    PYTHONPATH="$HOME/perms-dict/src"
+fi
+----------------------------------------------------------------------
+3. Start using the package!
+----------------------------------------------------------------------
+EOF

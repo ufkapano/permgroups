@@ -1,5 +1,4 @@
-Permutation groups (perms-dict repo)
-====================================
+# Permutation groups (perms-dict repo)
 
 Python implementation of permutations is presented. 
 Two classes are introduced: *Perm* for permutations, 
@@ -15,8 +14,11 @@ The code is written with Python 2.7 and Python 3.2.
 
 The project is moved from *Google Code*.
 
-References
-----------
+## Installation
+
+See doc/quickstart.txt
+
+## References
 
 [1] A. Kapanowski, *Python for education: permutations*. 
 http://arxiv.org/abs/1307.7042 [draft]
@@ -25,8 +27,7 @@ http://arxiv.org/abs/1307.7042 [draft]
 *Python for education: permutations*. [final version]
 http://ojs.pythonpapers.org/index.php/tpp/article/view/258 
 
-Contributors
-------------
+## Contributors
 
 Andrzej Kapanowski (project leader)
 
