@@ -2,8 +2,6 @@
 
 import unittest
 from perms import Perm
-#from groups import Group
-#from setsgroups import Group
 from simsgroups import Group
 
 # +-----+
@@ -32,32 +30,26 @@ class TestRubikGroup2Corner(unittest.TestCase):
         D3 = D1 * D2
         B2 = B1 * B1
         B3 = B1 * B2
-        #self.generators = [R1, D1, B1]   # too slow and too big
-        self.generators = [R1]
+        self.generators = [R1, D1, B1]   # for simsgroups only
         # cwiartki i polowki
-        #self.face_turns = [R1, R2, R3, D1, D2, D3, B1, B2, B3]   # too slow and too big
-        self.face_turns = [D1]
+        self.face_turns = [R1, R2, R3, D1, D2, D3, B1, B2, B3]   # for simsgroups only
         # tylko cwiartki
-        #self.quarter_turns = [R1, R3, D1, D3, B1, B3]   # too slow and too big
-        self.quarter_turns = [B1]
+        self.quarter_turns = [R1, R3, D1, D3, B1, B3]   # for simsgroups only
 
     def test_insert_generators(self):
         for perm in self.generators:
             self.group.insert(perm)
-        #self.assertEqual(self.group.order(), self.order_rubik2)
-        self.assertEqual(self.group.order(), 4)
+        self.assertEqual(self.group.order(), self.order_rubik2)
 
     def test_insert_face_turns(self):
         for perm in self.face_turns:
             self.group.insert(perm)
-        #self.assertEqual(self.group.order(), self.order_rubik2)
-        self.assertEqual(self.group.order(), 4)
+        self.assertEqual(self.group.order(), self.order_rubik2)
 
     def test_insert_quarter_turns(self):
         for perm in self.quarter_turns:
             self.group.insert(perm)
-        #self.assertEqual(self.group.order(), self.order_rubik2)
-        self.assertEqual(self.group.order(), 4)
+        self.assertEqual(self.group.order(), self.order_rubik2)
 
     def test_insert(self):
         self.assertEqual(self.group.order(), 1)
@@ -67,14 +59,14 @@ class TestRubikGroup2Corner(unittest.TestCase):
         self.assertEqual(self.group.order(), 6)
         self.group.insert(Perm()(0, 6)(1, 7)(2, 8))
         self.assertEqual(self.group.order(), 6 * 9)
-        #self.group.insert(Perm()(0, 9)(1, 10)(2, 11))
-        #self.assertEqual(self.group.order(), 6 * 9 * 12)
-        #self.group.insert(Perm()(0, 12)(1, 13)(2, 14))
-        #self.assertEqual(self.group.order(), 6 * 9 * 12 * 15)
-        #self.group.insert(Perm()(0, 15)(1, 16)(2, 17))
-        #self.assertEqual(self.group.order(), 6 * 9 * 12 * 15 * 18)
-        #self.group.insert(Perm()(0, 18)(1, 19)(2, 20))
-        #self.assertEqual(self.group.order(), 6 * 9 * 12 * 15 * 18 * 21)
+        self.group.insert(Perm()(0, 9)(1, 10)(2, 11))
+        self.assertEqual(self.group.order(), 6 * 9 * 12)
+        self.group.insert(Perm()(0, 12)(1, 13)(2, 14))
+        self.assertEqual(self.group.order(), 6 * 9 * 12 * 15)
+        self.group.insert(Perm()(0, 15)(1, 16)(2, 17))
+        self.assertEqual(self.group.order(), 6 * 9 * 12 * 15 * 18)
+        self.group.insert(Perm()(0, 18)(1, 19)(2, 20))
+        self.assertEqual(self.group.order(), 6 * 9 * 12 * 15 * 18 * 21)
 
     def tearDown(self): pass
 

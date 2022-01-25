@@ -2,8 +2,6 @@
 
 import unittest
 from perms import Perm
-#from groups import Group
-#from setsgroups import Group
 from simsgroups import Group
 
 # +-----------+
@@ -56,19 +54,19 @@ class TestRubikGroup3Center(unittest.TestCase):
     def test_insert_generators(self):
         for perm in self.generators:
             self.group.insert(perm)
-        #self.assertEqual(self.group.order(), self.order_rubik3)
+        #self.assertEqual(self.group.order(), self.order_rubik3) # time 37.261s
         self.assertEqual(self.group.order(), 16)
 
     def test_insert_face_turns(self):
         for perm in self.face_turns:
             self.group.insert(perm)
-        #self.assertEqual(self.group.order(), self.order_rubik3)
+        #self.assertEqual(self.group.order(), self.order_rubik3) # time 36.091s
         self.assertEqual(self.group.order(), 16)
 
     def test_insert_quarter_turns(self):
         for perm in self.quarter_turns:
             self.group.insert(perm)
-        #self.assertEqual(self.group.order(), self.order_rubik3)
+        #self.assertEqual(self.group.order(), self.order_rubik3) # time 37.520s
         self.assertEqual(self.group.order(), 16)
 
     def tearDown(self): pass
@@ -107,7 +105,7 @@ class TestRubikGroup3Corner(unittest.TestCase):
     def test_insert_generators(self):
         for perm in self.generators:
             self.group.insert(perm)
-        #self.assertEqual(self.group.order(), self.order_rubik3)
+        #self.assertEqual(self.group.order(), self.order_rubik3) # time 54.635s
         self.assertEqual(self.group.order(), 16)
 
     def tearDown(self): pass

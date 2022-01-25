@@ -41,6 +41,12 @@ class Perm(dict):
             words.append(str(tuple(cycle)))
         return "".join(words)
 
+    def __nonzero__(self):   # Py2
+        """Return always True so Perm() is True."""
+        return True
+
+    __bool__ = __nonzero__   # Py3
+
     def __missing__(self, key):
         """Enter the key into the dict and return the key."""
         self[key] = key

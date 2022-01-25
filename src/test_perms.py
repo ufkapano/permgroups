@@ -18,6 +18,10 @@ class TestPerm(unittest.TestCase):
         self.assertEqual(self.P1, Perm(data=[0, 2, 1]))
         self.assertEqual(Perm(), Perm()(1)(2)) # singletony
 
+    def test_bool(self):
+        self.assertTrue(self.E)
+        self.assertTrue(self.R1)
+
     def test_repr(self):
         self.assertEqual(repr(self.E), "Perm()")
         self.assertEqual(repr(self.R1), "Perm()(0, 1)(2, 3)")
@@ -109,9 +113,9 @@ class TestPerm(unittest.TestCase):
 
     def test_support(self):
         self.assertEqual(self.E.support(), [])
-        self.assertEqual(self.R1.support(), [0, 1, 2, 3])
-        self.assertEqual(self.P1.support(), [1, 2])
-        self.assertEqual(self.H.support(), [0, 1, 2, 3])
+        self.assertEqual(set(self.R1.support()), set([0, 1, 2, 3]))
+        self.assertEqual(set(self.P1.support()), set([1, 2]))
+        self.assertEqual(set(self.H.support()), set([0, 1, 2, 3]))
 
     def test_commutator(self):
         self.assertTrue(self.E.commutes_with(self.H))
