@@ -1,5 +1,8 @@
 INTERFACE FOR PERMUTATION GROUPS
 
+from groups import Group   # groups based on dicts
+from setsgroups import Group   # groups based on sets
+
 perm, p, q - permutations
 points - a sequence of items
 prop - function, prop(perm) is bool
