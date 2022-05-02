@@ -1,19 +1,25 @@
-LINUX WITH PYTHON AND GIT INSTALLED
+QUICK START
 ----------------------------------------------------------------------
-1. Clone the project into the home directory
+INSTALLING AN OFFICIAL RELEASE
 
-$ cd
-$ git clone https://github.com/ufkapano/permgroups.git
-----------------------------------------------------------------------
-2. Add the permgroups directory to the PYTHONPATH environment variable,
-for .bashrc file you can add:
+Requires: Python >= 3.7
 
-if [ -n "${PYTHONPATH}" ] ; then
-    PYTHONPATH="${PYTHONPATH}:$HOME/permgroups"
-else
-    PYTHONPATH="$HOME/permgroups"
-fi
+python -m pip install --upgrade pip
+python -m pip install permgroups
 ----------------------------------------------------------------------
-3. Start using the permgroups package!
+INSTALLING FROM SOURCE
+
+1. Clone the project into the git repository
+
+git clone https://github.com/ufkapano/permgroups.git
+
+2. Install the package in the editable mode
+
+cd permgroups
+python -m pip install -e .
+
+3. You can update the package any time
+
+git pull
 ----------------------------------------------------------------------
 EOF

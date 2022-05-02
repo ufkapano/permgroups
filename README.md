@@ -3,7 +3,9 @@
 Python implementation of permutation groups is presented. 
 Two classes are introduced: *Perm* for permutations, 
 *Group* for permutation groups (everal versions). 
-The class *Perm* is based on Python dictionaries and utilize cycle notation. 
+
+The class *Perm* from the *perms* module
+is based on Python dictionaries and utilize cycle notation. 
 The methods of calculation for the perm order, parity, ranking and unranking 
 are given. A random permutation generation is also shown. 
 
@@ -21,9 +23,35 @@ is advanced and it is bases on the Sims theory.
 
 The project is moved from *Google Code*.
 
-## Installation
+## Download
 
-See doc/quickstart.txt
+To install an official release do
+
+    python -m pip install permgroups
+
+To get the git version do
+
+    git clone https://github.com/ufkapano/permgroups.git
+
+## Usage
+
+~~~python
+>>> from permgroups.perms import Perm
+>>> from permgroups.groups import Group
+>>> p = Perm()(0, 1, 2, 4)(3, 5)
+>>> ~p
+Perm()(0, 4, 2, 1)(3, 5)
+>>> G = Group()
+>>> G.insert(p)
+>>> G.order()
+4
+>>> list(G.iterperms())
+[Perm(), Perm()(0, 1, 2, 4)(3, 5), Perm()(0, 2)(1, 4), Perm()(0, 4, 2, 1)(3, 5)]
+>>> Perm()(1, 4)(0, 2) in G, Perm()(0, 1, 2, 3) in G
+(True, False)
+>>> G.is_abelian()
+True
+~~~
 
 ## References
 
