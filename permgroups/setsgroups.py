@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from perms import Perm
+from permgroups.perms import Perm
 
 
 class Group(set):

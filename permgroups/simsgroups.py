@@ -6,7 +6,7 @@ except NameError:   # Python 3
     integer_types = (int,)
     xrange = range
 
-from perms import Perm
+from permgroups.perms import Perm
 
 
 class Group(set):

@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
 import unittest
-from perms import Perm
-from simsgroups import Group
+from permgroups.perms import Perm
+from permgroups.simsgroups import Group
 
 
 class TestGroup(unittest.TestCase):

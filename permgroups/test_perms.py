@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import unittest
-from perms import Perm
+from permgroups.perms import Perm
 
 
 class TestPerm(unittest.TestCase):

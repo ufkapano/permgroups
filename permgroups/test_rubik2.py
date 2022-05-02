@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 
 import unittest
-from perms import Perm
-#from groups import Group
-#from setsgroups import Group
-from simsgroups import Group
+from permgroups.perms import Perm
+#from permgroups.groups import Group
+#from permgroups.setsgroups import Group
+from permgroups.simsgroups import Group
 
 # +-----+
 # | 1  2|
