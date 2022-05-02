@@ -1,4 +1,4 @@
-# Permutation groups (perms-dict repo)
+# permugroups package
 
 Python implementation of permutations is presented. 
 Two classes are introduced: *Perm* for permutations, 

@@ -1,6 +1,6 @@
 INTERFACE FOR PERMUTATIONS
 
-from perms import Perm   # importing the Perm class
+from permgroups.perms import Perm   # importing the Perm class
 
 perm, p, q - permutations
 size, i - int

@@ -1,8 +1,8 @@
 INTERFACE FOR PERMUTATION GROUPS
 
-from groups import Group   # groups based on dicts
-from setsgroups import Group   # groups based on sets
-from simsgroups import Group   # groups based on Sims approach
+from permgroups.groups import Group   # groups based on dicts
+from permgroups.setsgroups import Group   # groups based on sets
+from permgroups.simsgroups import Group   # groups based on Sims approach
 
 perm, p, q - permutations
 points - a sequence of items
