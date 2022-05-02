@@ -10,7 +10,6 @@ The class *Group* is very simple and it is also based on dictionaries.
 It is mainly the presentation of the permutation groups interface with 
 methods for the group order, subgroups (normalizer, centralizer, center, 
 stabilizer), orbits, and several tests.
-The code is written with Python 2.7 and Python 3.2.
 
 The project is moved from *Google Code*.
 
