@@ -41,6 +41,12 @@ To get the git version do
 >>> p = Perm()(0, 1, 2, 4)(3, 5)
 >>> ~p
 Perm()(0, 4, 2, 1)(3, 5)
+>>> p.is_identity(), p.parity(), p.is_even(), p.sign()
+(False, 0, True, 1)
+>>> p.order(), pow(p, 4)
+(4, Perm())
+>>> Perm.random(10)
+Perm()(0, 1, 4, 2, 7)(3, 9, 8)(5, 6)
 >>> G = Group()
 >>> G.insert(p)
 >>> G.order()
