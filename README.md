@@ -27,7 +27,7 @@ The project is moved from *Google Code*.
 
 To install an official release do
 
-    python -m pip install permgroups
+    python3 -m pip install permgroups
 
 To get the git version do
 
