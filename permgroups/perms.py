@@ -116,9 +116,7 @@ class Perm(dict):
         self.update(changed)
         return self
 
-    def __getitem__(self, key):          # perm[k]
-        """Find the item on the given position."""
-        return dict.__getitem__(self, key)
+    # __getitem__ dziedziczone z dict
 
     def order(self):
         """Return the order of the perm."""

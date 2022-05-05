@@ -1,5 +1,5 @@
 INTERFACE FOR PERMUTATION GROUPS
-
+----------------------------------------------------------------------
 from permgroups.groups import Group   # groups based on dicts
 from permgroups.setsgroups import Group   # groups based on sets
 from permgroups.simsgroups import Group   # groups based on Sims approach

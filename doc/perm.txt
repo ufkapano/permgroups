@@ -1,5 +1,5 @@
 INTERFACE FOR PERMUTATIONS
-
+----------------------------------------------------------------------
 from permgroups.perms import Perm   # importing the Perm class
 
 perm, p, q - permutations
