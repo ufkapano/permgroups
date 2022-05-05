@@ -2,9 +2,9 @@
 
 try:
     integer_types = (int, long)
+    range = xrange
 except NameError:   # Python 3
     integer_types = (int,)
-    xrange = range
 
 from permgroups.perms import Perm
 
@@ -16,9 +16,9 @@ class Group(set):
         """Load up a Group instance."""
         self.size = 1   # rozmiar permutacji w grupie
         # Inicjalizacja struktur.
-        self.Sigma = [(k+1) * [None] for k in xrange(self.size)]
+        self.Sigma = [(k+1) * [None] for k in range(self.size)]
         # Lista Sigma[k] zawiera co najmniej identycznosc.
-        for k in xrange(self.size):
+        for k in range(self.size):
             self.Sigma[k][k] = Perm()   # identycznosc sigma_kk
         # Silne generatory.
         self.all_Sigma = [Perm()]   # E tez dodam raz
@@ -32,7 +32,7 @@ class Group(set):
     def order(self):
         """Return the group order."""
         result = 1
-        for k in xrange(self.size):
+        for k in range(self.size):
             result *= sum(1 for perm in self.Sigma[k] if perm)
         return result
 
@@ -40,9 +40,9 @@ class Group(set):
         """ Test if the perm belongs to the group."""
         size = perm.max() + 1
         if size > self.size:   # trzeba powiekszyc baze
-            self.Sigma.extend( (k+1) * [None] for k in xrange(self.size, size) )
+            self.Sigma.extend( (k+1) * [None] for k in range(self.size, size) )
             # Lista Sigma[k] zawiera co najmniej identycznosc.
-            for k in xrange(self.size, size):
+            for k in range(self.size, size):
                 self.Sigma[k][k] = Perm()   # identycznosc sigma_kk
             self.size = size
 
@@ -60,9 +60,9 @@ class Group(set):
         perms in order to satisfy the group properties."""
         size = perm.max() + 1
         if size > self.size:   # trzeba powiekszyc baze
-            self.Sigma.extend( (k+1) * [None] for k in xrange(self.size, size) )
+            self.Sigma.extend( (k+1) * [None] for k in range(self.size, size) )
             # Lista Sigma[k] zawiera co najmniej identycznosc.
-            for k in xrange(self.size, size):
+            for k in range(self.size, size):
                 self.Sigma[k][k] = Perm()   # identycznosc sigma_kk
             self.size = size
 
@@ -111,9 +111,9 @@ class Group(set):
         a = [0] * self.size
         while True:
             # M2. Odwiedziny.
-            if all(self.Sigma[k][a[k]] is not None for k in xrange(self.size)):
+            if all(self.Sigma[k][a[k]] is not None for k in range(self.size)):
                 perm = Perm()
-                for k in xrange(self.size):
+                for k in range(self.size):
                     perm = self.Sigma[k][a[k]] * perm
                 yield perm
             # M3. Przygotowanie do dodania jedynki.

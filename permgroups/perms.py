@@ -2,9 +2,9 @@
 
 try:
     integer_types = (int, long)
+    range = xrange
 except NameError:   # Python 3
     integer_types = (int,)
-    xrange = range
 
 import random
 from functools import reduce
@@ -71,7 +71,7 @@ class Perm(dict):
         #letters = "0123456789abcdefghijklmnopqrstuvwxyz"
         letters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_"
         chars = list()
-        for key in xrange(size):
+        for key in range(size):
             chars.append(letters[self[key]])
         return "".join(chars)
 
@@ -111,7 +111,7 @@ class Perm(dict):
         n = len(args)
         # Trzeba przemnozyc po mojemu self * other.
         # Musze wykorzystac tymczasowy slownik.
-        for i in xrange(n):
+        for i in range(n):
             changed[args[i]] = self[args[(i + 1) % n]]
         self.update(changed)
         return self
@@ -165,14 +165,14 @@ class Perm(dict):
             size = self.max() + 1
         elif size < self.max() + 1:
             raise ValueError("size is too small")
-        return [self[key] for key in xrange(size)]
+        return [self[key] for key in range(size)]
 
     def cycles(self):
         """Return a list of cycles for the perm."""
         size = self.max() + 1
         unchecked = [True] * size
         cyclic_form = list()
-        for i in xrange(size):
+        for i in range(size):
             if unchecked[i]:
                 cycle = list()
                 cycle.append(i)
@@ -191,7 +191,7 @@ class Perm(dict):
         size = self.max() + 1
         unchecked = [True] * size
         c = 0    # liczba cykli w perm, lacznie z jednoelementowymi
-        for j in xrange(size):
+        for j in range(size):
             if unchecked[j]:
                 c = c + 1
                 unchecked[j] = False
@@ -237,9 +237,9 @@ class Perm(dict):
     def inversion_vector(self, size):
         """Return the inversion vector of the perm."""
         lehmer = [0] * size
-        for i in xrange(size):
+        for i in range(size):
             counter = 0
-            for j in xrange(i + 1, size):
+            for j in range(i + 1, size):
                 if self[i] > self[j]:
                     counter += 1
             lehmer[i] = counter

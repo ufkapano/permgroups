@@ -2,7 +2,8 @@
 
 import unittest
 from permgroups.perms import Perm
-from permgroups.setsgroups import Group
+#from permgroups.setsgroups import Group
+from permgroups.simsgroups import Group
 
 # +-------------+
 # |  1  2  3  4 |
