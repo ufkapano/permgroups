@@ -2,7 +2,7 @@
 
 Python implementation of permutation groups is presented. 
 Two classes are introduced: *Perm* for permutations, 
-*Group* for permutation groups (everal versions). 
+*Group* for permutation groups (several versions). 
 
 The class *Perm* from the *perms* module
 is based on Python dictionaries and utilize cycle notation. 
